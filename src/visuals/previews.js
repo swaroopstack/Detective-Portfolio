@@ -1,0 +1,13 @@
+// HTML for the hover link-preview cards.
+import { IMG } from '../assets/index.js';
+import { ME } from '../config/profile.js';
+import { AV, hm } from './helpers.js';
+import { TH } from './thumbnails.js';
+
+const PJ=[['SafeRoute AI','Real-time urban safety platform generating AI-powered safety scores (0–100).'],['Ghosted','Real-time anonymous chat with instant rooms, private access and live messaging.'],['Exorcist','Windows disk cleanup CLI: detects orphaned app data, large files and duplicates.']];
+const proj=i=>`<div class="pv" style="background:#14110e;color:#e9dfc8"><div class="pu">github.com/swaroopstack · ${PJ[i][0]}</div>${i==1?`<img src="${IMG.gst}" alt="" style="display:block;width:100%">`:TH[i]()}<div style="padding:10px 14px;line-height:1.5">${PJ[i][1]}</div><div class="pf">Project preview · click to open GitHub</div></div>`;
+export const PV={p0:()=>proj(0),p1:()=>proj(1),p2:()=>proj(2),
+gh:()=>`<div class="pv" style="background:#0d1117;color:#e6edf3"><div class="pu">github.com/swaroopstack</div><img src="${IMG.gh}" alt="" style="display:block;width:100%"><div class="pf">GitHub profile preview · click to open</div></div>`,
+li:()=>`<div class="pv" style="background:#fff;color:#191919"><div class="pu" style="color:#444">linkedin.com/in/swaroop-kumar-922888333</div><div style="height:66px;background:linear-gradient(120deg,#0a66c2,#0e2a5a)"></div><div style="padding:0 16px 14px"><div style="margin-top:-28px;border:3px solid #fff;border-radius:50%;width:62px;height:62px;overflow:hidden;display:flex">${AV(56)}</div><b style="font:700 20px var(--cond)">${ME.name}</b><div>Computer Science student · Full-Stack Developer</div><div style="opacity:.6">${ME.loc} · Chandigarh University</div><div style="margin-top:10px"><span style="background:#0a66c2;color:#fff;border-radius:16px;padding:4px 16px;font-weight:700">Connect</span></div></div><div class="pf" style="color:#444">Stylized preview · click to open</div></div>`,
+lc:()=>`<div class="pv" style="background:#1a1a1a;color:#eee"><div class="pu">leetcode.com/u/swaroopkumar03</div><img src="${IMG.lc}" alt="" style="display:block;width:100%"><div class="pf">LeetCode profile preview · click to open</div></div>`,
+co:()=>`<div class="pv" style="background:#120c24;color:#eee"><div class="pu">codolio.com/profile/swaroop_03</div><div style="display:flex;gap:12px;align-items:center;padding:14px">${AV(48)}<div><b style="font:700 20px var(--cond)">swaroop_03</b><div style="opacity:.6">Coding profile</div></div></div><div class="kvp"><div><b>1,202</b><span>Submissions / yr</span></div><div><b>366</b><span>Active days</span></div><div><b>366</b><span>Max streak</span></div></div>${hm('#a78bfa',13,true)}<div class="pf">Stylized preview · click to open</div></div>`};
