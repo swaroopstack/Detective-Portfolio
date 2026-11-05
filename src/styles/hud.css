@@ -49,3 +49,7 @@
 #zoom{position:fixed;top:14px;right:14px;z-index:20;display:flex;flex-direction:column;gap:6px}
 #zoom button{width:28px;height:28px;background:#000b;border:1px solid #6b5a42;color:var(--amber);display:flex;align-items:center;justify-content:center;padding:0;transition:border-color .2s,background .2s}
 #zoom button:hover{border-color:var(--amber);background:#1a1308}
+
+/* ---- Performance: keep full-screen ambience static (was always animating) ---- */
+#lite{display:none}
+.spot{animation:none}

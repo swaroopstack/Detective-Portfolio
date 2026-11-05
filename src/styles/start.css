@@ -283,3 +283,8 @@ h1 em{display:block;color:var(--red);font-style:normal;text-shadow:0 0 30px #b32
 @media(max-width:900px){.emb{left:calc(50vw - 36vh*.829);height:72vh;width:calc(72vh*.829)}
 }
 
+/* ---- Performance: pause expensive loops (filter, grain, full-screen flicker) ---- */
+.grain,.flk,.flk2,.warm,.cone,.halo,.bgl:before,.mark,.bdg,.lamp b:after,#start h1 em,.ttl h1 em{animation:none}
+.rn{animation:none;opacity:.25}
+#start.out,#start.out *{animation-play-state:paused}
+
