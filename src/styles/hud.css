@@ -1,0 +1,51 @@
+/* Sound button, hint, lights, flicker overlays */
+#dust{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60;opacity:.5}
+
+.vig{position:fixed;inset:0;pointer-events:none;z-index:5;background:radial-gradient(ellipse at 50% 42%,transparent 30%,#000e 100%)}
+
+.spot{position:fixed;inset:0;pointer-events:none;z-index:4;background:radial-gradient(ellipse 50% 55% at 50% 40%,#ffe0a02e,transparent 70%);mix-blend-mode:screen;animation:fl 5s infinite}
+
+#hint{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:20;font-family:var(--cond);letter-spacing:.25em;font-size:13px;text-transform:uppercase;background:#000a;padding:8px 18px;border:1px solid #4a3a28;transition:opacity .6s;white-space:nowrap}
+
+#prog{position:fixed;top:18px;left:68px;z-index:20;font-family:var(--cond);letter-spacing:.2em;font-size:14px;background:#000a;padding:8px 14px;border:1px solid #4a3a28;display:flex;gap:6px;align-items:center}
+
+#prog i{width:12px;height:12px;border-radius:50%;border:2px solid #6b5a42}
+
+#prog i.on{background:var(--red);border-color:var(--red);box-shadow:0 0 8px var(--red)}
+
+@media(max-width:760px){#hint{font-size:11px;top:58px}
+}
+
+#snd{position:fixed;top:18px;left:18px;z-index:70;width:40px;height:40px;background:#000b;border:1px solid #6b5a42;color:var(--amber);display:flex;align-items:center;justify-content:center;padding:0}
+
+#snd:hover{border-color:var(--amber)}
+
+#snd .x{display:none}
+
+#snd.off .wv{display:none}
+
+#snd.off .x{display:block}
+
+#snd.off{color:#8a7a62}
+
+#flash{position:fixed;inset:0;z-index:58;background:#cfdcff;opacity:0;pointer-events:none}
+
+#flash.on{animation:fa 1.1s}
+
+.spot{mix-blend-mode:normal}
+
+#lite{position:fixed;inset:0;z-index:6;background:#000;opacity:0;pointer-events:none;animation:lt 11s infinite}
+
+.spot{background:radial-gradient(ellipse 52% 58% at 50% 40%,#ffe0a050,transparent 72%);animation:fl2 11s infinite}
+
+#snd{width:28px;height:28px;top:14px;left:14px}
+
+#snd svg{width:14px;height:14px}
+
+.vig:before{content:'';position:absolute;inset:0;background:var(--noise);opacity:.07}
+
+
+/* Zoom controls */
+#zoom{position:fixed;top:14px;right:14px;z-index:20;display:flex;flex-direction:column;gap:6px}
+#zoom button{width:28px;height:28px;background:#000b;border:1px solid #6b5a42;color:var(--amber);display:flex;align-items:center;justify-content:center;padding:0;transition:border-color .2s,background .2s}
+#zoom button:hover{border-color:var(--amber);background:#1a1308}
