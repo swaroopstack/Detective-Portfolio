@@ -1,0 +1,94 @@
+/* Pinned evidence: paper, photo, pin, tape, shadows */
+.item{position:absolute;transform:translate(-50%,-50%);cursor:pointer}
+
+.in{width:100%;height:100%;transform:rotate(var(--r));transition:transform .35s,filter .35s;filter:drop-shadow(8px 14px 10px #000b)}
+
+.item:hover{z-index:30}
+
+.item:hover .in{transform:rotate(calc(var(--r)*.3)) scale(1.05) translateY(-5px);filter:drop-shadow(14px 24px 16px #000c) brightness(1.1)}
+
+.item.dim{opacity:.3;pointer-events:none}
+
+.item.focus{z-index:40}
+
+.item.focus .in{transform:none}
+
+.tip{position:absolute;top:-34px;left:50%;transform:translateX(-50%);background:#000c;color:var(--amber);font-family:var(--cond);letter-spacing:.25em;font-size:13px;padding:4px 12px;white-space:nowrap;opacity:0;transition:.2s;pointer-events:none}
+
+.item:hover .tip{opacity:1}
+
+.pin{position:absolute;top:-10px;left:50%;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0 8%,#ff7b6d 14%,#b3261e 55%,#4d0a06);box-shadow:4px 8px 6px #0009;z-index:3}
+
+.item:not(.seen) .pin:after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid #ff5a4a;animation:pu 1.8s infinite}
+
+.tex{position:relative}
+
+.tex:after{content:'';position:absolute;inset:0;background:var(--noise);mix-blend-mode:multiply;opacity:.45;pointer-events:none}
+
+.photo{background:#eee8d6;padding:9px 9px 30px;position:relative;width:100%;height:100%;color:var(--ink)}
+
+.photo svg{display:block;width:100%;height:100%}
+
+.photo .cp{position:absolute;bottom:5px;left:0;right:0;text-align:center;font-size:14px;color:#3a2f22}
+
+.tape{position:absolute;top:-13px;left:50%;width:84px;height:26px;margin-left:-42px;background:#e2d59aaa;transform:rotate(-3deg);z-index:2;box-shadow:0 1px 3px #0005}
+
+.seal{position:absolute;right:8px;bottom:6px;border:3px solid var(--red);color:var(--red);font-family:var(--cond);font-weight:700;letter-spacing:.2em;padding:0 8px;transform:rotate(-12deg);font-size:16px;opacity:0;transition:.4s;background:#fff3;z-index:4}
+
+.item.seen .seal{opacity:.9}
+
+.np{position:relative;height:100%;background:#d8c89a;color:#2a2118;padding:12px 12px;clip-path:polygon(0 3%,6% 0,14% 2%,25% 0,38% 2%,52% 0,66% 2%,80% 0,92% 2%,100% 0,100% 97%,92% 100%,80% 98%,64% 100%,48% 98%,32% 100%,18% 98%,6% 100%,0 97%)}
+
+.np .mh{font-family:var(--cond);font-weight:700;font-size:21px;text-align:center;border-bottom:3px double #2a2118;letter-spacing:.06em}
+
+.np small{display:block;text-align:center;font-size:8px;letter-spacing:.2em;padding:2px 0 5px}
+
+.np h4{font-family:var(--cond);font-size:22px;line-height:1;margin-bottom:6px;font-weight:700}
+
+.np .im{height:70px;background:radial-gradient(circle at 50% 100%,#2a2118 0 28%,transparent 29%),#a89a74;filter:contrast(1.3);margin-bottom:6px}
+
+.np .co{height:105px;background:repeating-linear-gradient(#2a2118cc 0 2px,transparent 2px 6px);-webkit-mask:linear-gradient(90deg,#000 46%,transparent 46% 54%,#000 54%);mask:linear-gradient(90deg,#000 46%,transparent 46% 54%,#000 54%)}
+
+.tape{clip-path:polygon(0 0,4% 20%,0 40%,3% 70%,0 100%,100% 100%,97% 70%,100% 40%,96% 20%,100% 0);background:#d6c78c99;opacity:.9}
+
+.w{position:relative;height:100%}
+
+.w:before{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:multiply;opacity:.85;box-shadow:inset 0 0 28px #50300fbb;
+background:linear-gradient(100deg,transparent calc(var(--cx,48%) - 2%),#0006 var(--cx,48%),#fff4 calc(var(--cx,48%) + 1.5%),transparent calc(var(--cx,48%) + 4%)),linear-gradient(172deg,transparent 58%,#0004 60%,#fff3 61.5%,transparent 64%),radial-gradient(circle at 18% 82%,#6b3d1a66,transparent 32%),radial-gradient(circle at 86% 14%,#4a2a1088,transparent 28%),radial-gradient(circle at 60% 55%,#5a3a1855,transparent 18%),var(--noise)}
+
+.w:after{content:'';position:absolute;right:0;top:0;width:26px;height:26px;z-index:4;background:linear-gradient(225deg,#1a1008cc 50%,#b8a97e 50%);pointer-events:none;opacity:.8}
+
+.in{filter:none!important;position:relative}
+
+.in:before{content:'';position:absolute;inset:6px 4px 2px 6px;box-shadow:9px 15px 18px #000b;z-index:-1}
+
+.w:before{mix-blend-mode:normal!important;opacity:.7!important}
+
+.tex:after{mix-blend-mode:normal;opacity:.16}
+
+.np .sf{font:600 11px/1.25 Georgia,serif;margin:0 0 6px;border-top:1px solid #2a2118;border-bottom:1px solid #2a2118;padding:4px 0}
+
+.in{transform:rotate(var(--r)) perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+
+.in:before{box-shadow:1px 2px 2px #000b,6px 10px 14px #0008,16px 26px 34px #0006}
+
+.w:after{content:'';position:absolute;left:0;top:0;right:auto;width:100%;height:100%;opacity:1;z-index:4;pointer-events:none;background:linear-gradient(118deg,#ffffff26 0,transparent 32%,transparent 62%,#00000038 100%),radial-gradient(ellipse at 100% 0,#00000030,transparent 22%)}
+
+.photo:before{content:'';position:absolute;inset:9px 9px 30px;background:linear-gradient(125deg,#fff4 0,transparent 34%,transparent 66%,#fff2 100%);pointer-events:none;z-index:2}
+
+.photo svg{filter:contrast(1.06) saturate(.82) sepia(.16)}
+
+.pin{background:radial-gradient(circle at 34% 28%,#fff 0 6%,#ff9a8c 12%,#c42b21 46%,#6a0f0a 80%,#3a0705);box-shadow:inset -3px -4px 5px #0008,inset 2px 2px 3px #fff5,2px 3px 4px #000a}
+
+.pin:before{content:'';position:absolute;left:9px;top:13px;width:22px;height:9px;border-radius:50%;background:#000a;filter:blur(2.5px);transform:rotate(35deg);z-index:-1}
+
+.tape{background:linear-gradient(105deg,#eadfaecc,#d9c98aaa 40%,#eee3b499);box-shadow:0 1px 2px #0006,inset 0 0 6px #fff7}
+
+
+/* Realistic pins, tape and paper clips */
+.pin{width:30px;height:30px;margin-left:-15px;top:-14px;border-radius:0;box-shadow:none;background:url(/textures/pin-red.png) center/contain no-repeat}
+.pin.p2{background-image:url(/textures/pin-blue.png)}
+.pin.p3{background-image:url(/textures/pin-yellow.png)}
+.pin:before{left:12px;top:16px;width:24px;height:10px}
+.tape{background:url(/textures/tape.png) center/100% 100%;box-shadow:0 1px 2px #0005}
+.pclip{position:absolute;left:16px;top:-20px;width:20px;z-index:3;transform:rotate(-9deg);filter:drop-shadow(2px 3px 2px #0009);pointer-events:none}

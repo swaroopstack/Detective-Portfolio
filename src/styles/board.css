@@ -1,0 +1,69 @@
+/* Wall, cork board, strings, decor props */
+#vp{position:fixed;inset:0;overflow:hidden;cursor:grab;touch-action:none;background:#1a0f06}
+
+#vp.drag{cursor:grabbing}
+
+#world{position:absolute;left:0;top:0;width:2200px;height:1500px;transform-origin:0 0;background:var(--noise),radial-gradient(circle at 1100px 700px,#8a5e36,#5b3a1f 60%,#3c2412);background-blend-mode:multiply,normal;box-shadow:inset 0 0 0 28px #3a2312,inset 0 0 0 32px #1a0e05,inset 0 0 120px #000}
+
+#world.anim{transition:transform .9s cubic-bezier(.65,0,.25,1)}
+
+#strings{position:absolute;inset:0;pointer-events:none}
+
+#strings .y{fill:none;stroke:#a81f17;stroke-width:3.5}
+
+#strings .t{fill:none;stroke:#ff8a7a;stroke-width:3.5;stroke-dasharray:1.5 3.5;opacity:.55}
+
+#strings .sh{fill:none;stroke:#000;stroke-width:4;opacity:.4;transform:translate(5px,9px);filter:blur(3px)}
+
+.deco{position:absolute;pointer-events:none;color:var(--ink);font-size:15px;padding:16px 14px;box-shadow:4px 8px 10px #0008;transform:rotate(var(--r))}
+
+.stain{position:absolute;width:110px;height:110px;border-radius:50%;border:7px solid #2a150866;filter:blur(1px);pointer-events:none}
+
+.dc{position:absolute;transform:translate(-50%,-50%);pointer-events:none}
+
+.dc .in{filter:drop-shadow(6px 10px 7px #000a)}
+
+.nt{height:100%;padding:12px 10px;font-size:15px;line-height:1.25;color:#2a2118}
+
+.pp{height:100%;background:#e8dfc8;padding:10px;font-size:10px;color:#2a2118}
+
+.pp b{font-family:var(--cond);font-size:16px;letter-spacing:.1em;display:block}
+
+.pp i{display:block;height:40px;background:repeating-linear-gradient(#2a2118aa 0 2px,transparent 2px 6px)}
+
+#strings .mk{fill:none;stroke:#a81f17;stroke-width:5;stroke-linecap:round;opacity:.7}
+
+#strings .mq{fill:#a81f17;font:80px 'Special Elite';opacity:.4}
+
+#strings .th .y,#strings .th .t,#strings .th .sh{stroke-width:2.2}
+
+#strings .wh .y{stroke:#cfc7ae;stroke-width:2.5}
+
+#strings .wh .t{stroke:#fff}
+
+#strings .wh .sh{stroke-width:3}
+
+#vp,#vp *,.item,.item *{cursor:var(--mag)!important}
+
+#world{will-change:transform;backface-visibility:hidden;background:radial-gradient(ellipse at 50% 30%,#4a3220,transparent 70%),repeating-linear-gradient(90deg,#2a1c11 0 140px,#0f0905 140px 144px),#1a1009;box-shadow:none}
+
+#world.anim{transition:none}
+
+#board{position:absolute;left:70px;top:70px;width:2060px;height:1360px;border:38px solid #3b2412;border-image:linear-gradient(135deg,#8a5e34,#3d2410 35%,#70482a 65%,#2c1a0b) 1;
+background:radial-gradient(ellipse 55% 50% at 50% 36%,#ffe0a040,transparent 72%),radial-gradient(ellipse at 50% 50%,transparent 50%,#0008 100%),radial-gradient(circle,#2a160877 0 1.6px,transparent 2.4px) 0 0/97px 83px,radial-gradient(circle,#2a160855 0 1.4px,transparent 2.2px) 31px 40px/131px 113px,var(--cork);
+box-shadow:inset 0 0 70px #000d,inset 0 0 8px #000,0 40px 90px #000,0 0 0 2px #000a}
+
+#board:before{content:'CASE FILE 001 · THE DEVELOPER';position:absolute;left:50%;top:-60px;transform:translateX(-50%);padding:5px 26px;background:linear-gradient(#e3c474,#9a7a2c);color:#3a2a08;font-family:var(--cond);font-weight:700;letter-spacing:.35em;font-size:15px;box-shadow:0 3px 6px #000a,inset 0 0 0 1px #fff5}
+
+#board:after{content:'';position:absolute;inset:-38px;pointer-events:none;background:radial-gradient(circle at 19px 19px,#f0d98a 0 4px,#8a6a20 5px,transparent 6px),radial-gradient(circle at calc(100% - 19px) 19px,#f0d98a 0 4px,#8a6a20 5px,transparent 6px),radial-gradient(circle at 19px calc(100% - 19px),#f0d98a 0 4px,#8a6a20 5px,transparent 6px),radial-gradient(circle at calc(100% - 19px) calc(100% - 19px),#f0d98a 0 4px,#8a6a20 5px,transparent 6px)}
+
+#strings .sh{filter:none;opacity:.32}
+
+.mgd{position:absolute;left:1080px;top:880px;width:130px;transform:rotate(-58deg);pointer-events:none;filter:drop-shadow(8px 12px 6px #000a)}
+
+#strings .sh{transform:translate(4px,9px);opacity:.4}
+
+
+/* Realistic textures */
+#world{background:radial-gradient(ellipse at 50% 30%,#5a3c2466,transparent 72%),url(/textures/wood-wall.jpg) 0 0/288px 512px,#1a1009;box-shadow:none}
+.stain{width:150px;height:150px;border:0;border-radius:0;filter:none;background:url(/textures/coffee-ring.png) center/contain no-repeat;opacity:.9}
