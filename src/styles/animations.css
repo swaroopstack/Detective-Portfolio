@@ -1,0 +1,146 @@
+/* All @keyframes */
+@keyframes sw{from{transform:rotate(-5deg)}
+to{transform:rotate(5deg)}
+}
+
+@keyframes fl{0%,100%{opacity:1}
+46%{opacity:.9}
+48%{opacity:.6}
+50%{opacity:1}
+}
+
+@keyframes pu{0%{transform:scale(.6);opacity:1}
+100%{transform:scale(2);opacity:0}
+}
+
+@keyframes bl{50%{opacity:.2}
+}
+
+@keyframes fa{0%{opacity:0}
+6%{opacity:.35}
+12%{opacity:.05}
+20%{opacity:.25}
+100%{opacity:0}
+}
+
+@keyframes cf{0%,100%{opacity:1}
+12%{opacity:.7}
+14%{opacity:1}
+55%{opacity:.85}
+57%{opacity:.45}
+59%{opacity:1}
+}
+
+@keyframes fk{0%,100%{opacity:0}
+8%{opacity:.18}
+9%{opacity:0}
+30%{opacity:.08}
+31%{opacity:.3}
+33%{opacity:0}
+62%{opacity:.12}
+64%{opacity:0}
+85%{opacity:.25}
+86%{opacity:.02}
+}
+
+@keyframes flo{to{transform:translateY(-52%) rotate(-.8deg)}
+}
+
+@keyframes wn{0%,100%{opacity:1}
+20%{opacity:.5}
+22%{opacity:1}
+70%{opacity:.7}
+72%{opacity:.3}
+74%{opacity:1}
+}
+
+@keyframes wk{from{transform:translate(-16px,-6px) scale(.8)}
+to{transform:translate(16px,8px) scale(1.12)}
+}
+
+@keyframes rn{to{transform:translate(-26px,100px)}
+}
+
+@keyframes mg{from{transform:translate(-12px,6px) rotate(-5deg)}
+to{transform:translate(14px,-8px) rotate(4deg)}
+}
+
+@keyframes bd{0%,100%{transform:translateY(0);filter:brightness(1)}
+50%{transform:translateY(-6px)}
+12%{filter:brightness(.6)}
+14%{filter:brightness(1.1)}
+}
+
+@keyframes tf{0%,100%{opacity:1}
+41%{opacity:1}
+42%{opacity:.75}
+43%{opacity:1}
+}
+
+@keyframes sw2{to{transform:rotate(-2deg) translateY(-5px)}
+}
+
+@keyframes gr{25%{transform:translate(-22px,10px)}
+50%{transform:translate(16px,-26px)}
+75%{transform:translate(-10px,-16px)}
+}
+
+@keyframes md{from{transform:translate(0,0) rotate(-3deg)}
+to{transform:translate(-30px,-24px) rotate(3deg)}
+}
+
+@keyframes fi{from{opacity:0}
+}
+
+@keyframes up{to{opacity:1;transform:none}
+}
+
+@keyframes mk{0%,100%{filter:brightness(1) drop-shadow(0 0 20px #f1e8cf44)}
+9%{filter:brightness(.75)}
+10%{filter:brightness(1.08)}
+47%{filter:brightness(1)}
+48%{filter:brightness(.6)}
+50%{filter:brightness(1.1)}
+}
+
+@keyframes bp{0%{box-shadow:0 0 0 0 #e0a45866}
+70%,100%{box-shadow:0 0 0 18px transparent}
+}
+
+@keyframes eb{to{transform:translateY(-8px) rotate(-.8deg)}
+}
+
+@keyframes dr{to{stroke-dashoffset:0}
+}
+
+@keyframes mw{from{transform:translate(-6px,4px) rotate(-1.6deg)}
+to{transform:translate(8px,-6px) rotate(1.8deg)}
+}
+
+@keyframes lt{0%,100%{opacity:0}
+5%{opacity:.55}
+6%{opacity:.08}
+8%{opacity:.5}
+9.5%{opacity:0}
+41%{opacity:.4}
+42%{opacity:0}
+71%{opacity:.62}
+72%{opacity:.12}
+73.5%{opacity:.5}
+75%{opacity:0}
+}
+
+@keyframes fl2{0%,100%{opacity:.8}
+6%{opacity:.2}
+9%{opacity:1}
+40%{opacity:.8}
+42%{opacity:.3}
+43%{opacity:1}
+70%{opacity:.8}
+72%{opacity:.2}
+75%{opacity:1}
+}
+
+@keyframes br{to{transform:scale(1.012)}
+}
+
