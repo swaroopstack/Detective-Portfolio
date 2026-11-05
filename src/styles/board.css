@@ -67,3 +67,7 @@ box-shadow:inset 0 0 70px #000d,inset 0 0 8px #000,0 40px 90px #000,0 0 0 2px #0
 /* Realistic textures */
 #world{background:radial-gradient(ellipse at 50% 30%,#5a3c2466,transparent 72%),url(/textures/wood-wall.jpg) 0 0/288px 512px,#1a1009;box-shadow:none}
 .stain{width:150px;height:150px;border:0;border-radius:0;filter:none;background:url(/textures/coffee-ring.png) center/contain no-repeat;opacity:.9}
+
+/* ---- Performance: layer only while moving; drop the per-prop shadow filter ---- */
+#world{will-change:auto;backface-visibility:visible}
+.dc .in,.mgd{filter:none}

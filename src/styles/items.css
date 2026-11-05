@@ -92,3 +92,11 @@ background:linear-gradient(100deg,transparent calc(var(--cx,48%) - 2%),#0006 var
 .pin:before{left:12px;top:16px;width:24px;height:10px}
 .tape{background:url(/textures/tape.png) center/100% 100%;box-shadow:0 1px 2px #0005}
 .pclip{position:absolute;left:16px;top:-20px;width:20px;z-index:3;transform:rotate(-9deg);filter:drop-shadow(2px 3px 2px #0009);pointer-events:none}
+
+/* ---- Performance: fewer composited layers, no per-item filters ---- */
+.item,.dc{contain:layout style}
+.in{transform:rotate(var(--r))}
+.dc .in,.mgd,.pclip,.photo svg{filter:none}
+.pin:before{filter:none;opacity:.45}
+.in:before{box-shadow:5px 9px 12px #0009}
+.item:not(.seen) .pin:after{animation-duration:2.6s}
