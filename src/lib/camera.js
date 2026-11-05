@@ -19,6 +19,8 @@ export function createCamera(vp, world) {
     Y = wh <= H ? (H - wh) / 2 : Math.min(0, Math.max(H - wh, Y));
   }
   function apply() {
+    // Promote the board to its own layer only while it is actually moving.
+    world.style.willChange = 'transform';
     if (!run) { run = true; requestAnimationFrame(tick); }
   }
   function tick() {
@@ -27,7 +29,7 @@ export function createCamera(vp, world) {
     cx += (X - cx) * lf; cy += (Y - cy) * lf; cs += (s - cs) * lf;
     world.style.transform = `translate3d(${cx.toFixed(2)}px,${cy.toFixed(2)}px,0) scale(${cs.toFixed(4)})`;
     if (Math.abs(X - cx) > 0.15 || Math.abs(Y - cy) > 0.15 || Math.abs(s - cs) > 0.0004 || (!game.cur && coasting)) requestAnimationFrame(tick);
-    else run = false;
+    else { run = false; world.style.willChange = 'auto'; }
   }
   function center() {
     s = Math.max(minScale(), 1);
@@ -53,14 +55,11 @@ export function createCamera(vp, world) {
     }
     down = true; moved = false; sx = e.clientX; sy = e.clientY; ox = X; oy = Y; vx = vy = 0; lf = 0.35;
   });
-  addEventListener('pointermove', (e) => {
-    if (pts.has(e.pointerId)) pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (pinching && pts.size === 2) {
-      const [a, b] = [...pts.values()], d = Math.hypot(a.x - b.x, a.y - b.y);
-      if (pd) zoomAt(s * (d / pd), (a.x + b.x) / 2, (a.y + b.y) / 2);
-      pd = d; return;
-    }
-    if (!down) return;
+  let pending = null, pendingRaf = 0;
+  function applyMove() {
+    pendingRaf = 0;
+    const e = pending; pending = null;
+    if (!e || !down) return;
     const dx = e.clientX - sx, dy = e.clientY - sy;
     if (!moved && Math.hypot(dx, dy) > 6) { moved = true; vp.classList.add('drag'); $('hint').style.opacity = 0; }
     if (moved) {
@@ -69,11 +68,25 @@ export function createCamera(vp, world) {
       vx = (X - pX) * 0.6 + vx * 0.4; vy = (Y - pY) * 0.6 + vy * 0.4;
       lt = performance.now(); apply();
     }
+  }
+  addEventListener('pointermove', (e) => {
+    if (pts.has(e.pointerId)) pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pinching && pts.size === 2) {
+      const [a, b] = [...pts.values()], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (pd) zoomAt(s * (d / pd), (a.x + b.x) / 2, (a.y + b.y) / 2);
+      pd = d; return;
+    }
+    if (!down) return;
+    // Coalesce pointer events to one update per frame (high-rate mice/trackpads).
+    pending = e;
+    if (!pendingRaf) pendingRaf = requestAnimationFrame(applyMove);
   });
   const release = (e) => {
     pts.delete(e.pointerId);
     if (pts.size < 2) pinching = false;
     if (down) {
+      if (pendingRaf) { cancelAnimationFrame(pendingRaf); pendingRaf = 0; }
+      if (pending) { pendingRaf = 0; applyMove(); }   // flush the last coalesced move
       down = false; lf = 0.2; vp.classList.remove('drag');
       if (!moved || performance.now() - lt > 80) vx = vy = 0;
       apply();
