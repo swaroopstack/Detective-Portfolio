@@ -1,4 +1,5 @@
 import { $ } from './lib/dom.js';
+import { IMG } from './assets/index.js';
 import { game } from './state.js';
 import { ME } from './config/profile.js';
 import { ITEMS } from './data/evidence.js';
@@ -27,6 +28,7 @@ export function initGame(cam) {
 export function startGame() {
   try { ambient(); } catch { /* audio unavailable: the game still works silently */ }
   sfx('c');
+  preloadPreviews();
   $('start').classList.add('out');
   setTimeout(() => {
     $('start').style.display = 'none';
@@ -67,4 +69,10 @@ export function closeEvidence() {
     resumeDust();
     say(lines);
   }, 700);
+}
+
+/** Fetch the hover-preview screenshots while the browser is idle so the first hover is instant. */
+function preloadPreviews() {
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1500));
+  idle(() => [IMG.gh, IMG.lc, IMG.gst].forEach((u) => { new Image().src = u; }));
 }

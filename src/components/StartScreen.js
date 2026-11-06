@@ -4,7 +4,7 @@ import { ALLEY } from '../visuals/alley.js';
 
 export const markup = `<section id="start"><div class="flk2"></div><div class="warm"></div>
 <div class="alleyp"><div id="al1"></div></div>
-<div class="emb"><img class="fig" alt="" src="${IMG.fig}"></div>
+<div class="emb"><img class="fig" alt="" decoding="async" src="${IMG.fig}"></div>
 <div class="hl"><p>INTERN SHIPS 8+ REACT COMPONENTS</p><svg viewBox="0 0 260 120" preserveAspectRatio="none"><ellipse cx="130" cy="60" rx="124" ry="54" fill="none" stroke="#c0281f" stroke-width="5" pathLength="1"/></svg></div>
 <div class="magw"><div class="lens"><div id="al2"></div></div><img class="mgS" alt="" src="${IMG.magS}"></div>
 <div class="ttl"><div class="cs">Case File No. 001 · Under Investigation</div><h1><span>THE</span><em id="nm"></em></h1>
