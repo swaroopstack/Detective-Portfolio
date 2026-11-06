@@ -1,5 +1,6 @@
 import { $ } from '../lib/dom.js';
 import { game } from '../state.js';
+import { perf } from '../lib/perf.js';
 
 export const markup = '<canvas id="dust"></canvas>';
 
@@ -17,7 +18,7 @@ function resize() {
 
 function frame(t) {
   // Pause while hidden, on the start screen, or while a case file is open.
-  if (!active || document.hidden || game.locked) { running = false; return; }
+  if (!active || document.hidden || game.locked || perf.low) { running = false; return; }
   running = true;
   if (t - last >= 33) {           // cap at ~30fps: this is ambient dust, not gameplay
     last = t;
@@ -45,6 +46,7 @@ export function startDust() {
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) resumeDust();
   });
+  addEventListener('perfchange', resumeDust);
   active = true;
   running = true;
   requestAnimationFrame(frame);
