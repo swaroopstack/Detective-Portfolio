@@ -7,10 +7,13 @@ import './styles/hud.css';
 import './styles/dialogue.css';
 import './styles/panel.css';
 import './styles/preview.css';
+import './styles/perf.css';
 
 import { $ } from './lib/dom.js';
+import { initPerf } from './lib/perf.js';
 import { createCamera } from './lib/camera.js';
 import * as Sound from './components/SoundToggle.js';
+import * as Quality from './components/QualityToggle.js';
 import * as Dust from './components/DustCanvas.js';
 import * as Start from './components/StartScreen.js';
 import * as Board from './components/Board.js';
@@ -21,10 +24,12 @@ import * as Zoom from './components/ZoomControls.js';
 import { initGame, startGame, canOpen, openEvidence, closeEvidence } from './game.js';
 
 // Mount markup in stacking order, then wire each component.
-$('app').innerHTML = [Sound.markup, Dust.markup, Start.markup, Board.markup, Zoom.markup, Dialogue.markup, Preview.markup, Panel.markup].join('\n');
+initPerf();
+$('app').innerHTML = [Sound.markup, Quality.markup, Dust.markup, Start.markup, Board.markup, Zoom.markup, Dialogue.markup, Preview.markup, Panel.markup].join('\n');
 
 const camera = createCamera($('vp'), $('world'));
 Sound.initSoundToggle();
+Quality.initQualityToggle();
 Dust.startDust();
 Start.initStartScreen(startGame);
 Board.mountBoard({ canOpen, onOpen: openEvidence });

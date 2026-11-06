@@ -1,0 +1,27 @@
+/* Performance rules. Loaded last so they win over the visual layers. */
+
+/* Always: drop duplicate paper-noise overlay (the item already has one) and keep the start grain static. */
+.tex:after { display: none; }
+.grain { animation: none; }
+.in:before { box-shadow: 2px 4px 3px #000b, 10px 18px 24px #0007; }   /* was a 34px blur on every item */
+
+/* Quality button */
+#fx { position: fixed; top: 14px; left: 48px; z-index: 70; width: 28px; height: 28px; padding: 0;
+  background: #000b; border: 1px solid #6b5a42; color: var(--amber); font: 700 11px var(--cond); letter-spacing: .04em; }
+#fx:hover { border-color: var(--amber); }
+#fx.off { color: #8a7a62; text-decoration: line-through; }
+
+/* Reduced quality: set automatically on slow devices, or with the FX button */
+html.perf-low #lite, html.perf-low .spot, html.perf-low .vig:before, html.perf-low #dust { display: none; }
+html.perf-low .w { clip-path: none !important; }
+html.perf-low .w:before, html.perf-low .w:after, html.perf-low .photo:before { display: none; }
+html.perf-low .in:before { box-shadow: 2px 4px 6px #0008; }
+html.perf-low .pin:before { display: none; }
+html.perf-low .item:not(.seen) .pin:after { animation: none; }
+html.perf-low .item:hover .in { transform: rotate(var(--r)); }
+html.perf-low #board { box-shadow: none; background: var(--cork); }
+html.perf-low #stringsCanvas { opacity: .95; }
+html.perf-low .rn, html.perf-low .grain { display: none; }
+html.perf-low .flk2, html.perf-low .warm, html.perf-low .alley, html.perf-low .emb, html.perf-low .magw,
+html.perf-low .fg, html.perf-low .wn, html.perf-low .gl, html.perf-low .bgl:before, html.perf-low .halo { animation: none; }
+html.perf-low .hl ellipse { stroke-dashoffset: 0; animation: none; }
