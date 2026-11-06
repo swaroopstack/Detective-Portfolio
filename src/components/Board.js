@@ -26,6 +26,25 @@ e.innerHTML=`<div class="tip">${it.tip.toUpperCase()}</div><div class="in"><div 
 e.onclick=()=>{if(!canOpen())return;onOpen(it)};it.el=e;world.appendChild(e)});
   const mgd=new Image();mgd.src=IMG.magD;mgd.className='mgd';world.appendChild(mgd);
   function pt(r){return typeof r=='number'?{x:D[r][1],y:D[r][2]-D[r][4]/2}:{x:by[r].x,y:by[r].y-by[r].h/2}}
-const seg=(a,b,g)=>{const p=`M${a.x} ${a.y}Q${(a.x+b.x)/2} ${(a.y+b.y)/2+g} ${b.x} ${b.y}`;return `<path class="sh" d="${p}"/><path class="y" d="${p}"/><path class="t" d="${p}"/>`};
-function drawStrings(){let d=SCR;XL.forEach(([a,b],i)=>d+=`<g class="${i%4==0?'wh':'th'}">${seg(pt(a),pt(b),30+(i*37)%80)}</g>`);LINKS.forEach(([a,b],i)=>d+=seg(pt(a),pt(b),40+(i*23)%60));$('strings').innerHTML=d}drawStrings();
+// Strings are painted once into a bitmap (cheap to composite) instead of ~240 live SVG paths.
+  const K = 1.25;
+  function drawStrings() {
+    $('strings').innerHTML = SCR;                       // only the few marker scribbles stay as SVG
+    const cv = document.createElement('canvas');
+    cv.id = 'stringsCanvas'; cv.width = 2200 * K; cv.height = 1500 * K;
+    $('strings').after(cv);
+    const g = cv.getContext('2d');
+    if (!g) return;
+    g.scale(K, K); g.lineCap = 'round';
+    const curve = (a, b, sag) => { g.beginPath(); g.moveTo(a.x, a.y); g.quadraticCurveTo((a.x + b.x) / 2, (a.y + b.y) / 2 + sag, b.x, b.y); };
+    const string = (a, b, sag, kind) => {
+      const w = kind === 'th' ? 2.2 : kind === 'wh' ? 2.5 : 3.5;
+      g.save(); g.translate(4, 9); curve(a, b, sag); g.globalAlpha = 0.4; g.strokeStyle = '#000'; g.lineWidth = kind === 'wh' ? 3 : kind === 'th' ? 2.2 : 4; g.stroke(); g.restore();
+      curve(a, b, sag); g.strokeStyle = kind === 'wh' ? '#cfc7ae' : '#a81f17'; g.lineWidth = w; g.stroke();
+      g.save(); curve(a, b, sag); g.globalAlpha = 0.55; g.strokeStyle = kind === 'wh' ? '#fff' : '#ff8a7a'; g.lineWidth = w; g.setLineDash([1.5, 3.5]); g.stroke(); g.restore();
+    };
+    XL.forEach(([a, b], i) => string(pt(a), pt(b), 30 + (i * 37) % 80, i % 4 === 0 ? 'wh' : 'th'));
+    LINKS.forEach(([a, b], i) => string(pt(a), pt(b), 40 + (i * 23) % 60, 'red'));
+  }
+  drawStrings();
 }
