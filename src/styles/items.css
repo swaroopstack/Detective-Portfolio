@@ -86,11 +86,11 @@ background:linear-gradient(100deg,transparent calc(var(--cx,48%) - 2%),#0006 var
 
 
 /* Realistic pins, tape and paper clips */
-.pin{width:30px;height:30px;margin-left:-15px;top:-14px;border-radius:0;box-shadow:none;background:url(/textures/pin-red.png) center/contain no-repeat}
-.pin.p2{background-image:url(/textures/pin-blue.png)}
-.pin.p3{background-image:url(/textures/pin-yellow.png)}
+.pin{width:30px;height:30px;margin-left:-15px;top:-14px;border-radius:0;box-shadow:none;background:url(/textures/pin-red.webp) center/contain no-repeat}
+.pin.p2{background-image:url(/textures/pin-blue.webp)}
+.pin.p3{background-image:url(/textures/pin-yellow.webp)}
 .pin:before{left:12px;top:16px;width:24px;height:10px}
-.tape{background:url(/textures/tape.png) center/100% 100%;box-shadow:0 1px 2px #0005}
+.tape{background:url(/textures/tape.webp) center/100% 100%;box-shadow:0 1px 2px #0005}
 .pclip{position:absolute;left:16px;top:-20px;width:20px;z-index:3;transform:rotate(-9deg);filter:drop-shadow(2px 3px 2px #0009);pointer-events:none}
 
 /* ---- Performance: fewer composited layers, no per-item filters ---- */

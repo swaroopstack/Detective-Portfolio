@@ -66,7 +66,7 @@ src/
 - **Your details:** `src/config/profile.js` (name, email, links).
 - **Evidence content and detective lines:** `src/data/evidence.js`.
 - **Photos and screenshots:** replace files in `src/assets/images/` keeping the same names
-  (`suspect-cat.jpg` for the mugshot, `previews/*.jpg` for hover previews).
+  (`suspect-cat.webp` for the mugshot, `previews/*.webp` for hover previews).
 - **Add a prop to the board:** add a row to `src/data/decor.js` and, for a new type, a drawing in `src/visuals/props.js`.
 
 ## Deploy to GitHub Pages

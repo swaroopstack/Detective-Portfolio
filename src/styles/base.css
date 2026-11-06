@@ -1,6 +1,6 @@
 /* Design tokens, reset and global element rules */
 :root{--ink:#2a2118;--cr:#e9dfc8;--amber:#e0a458;--red:#b3261e;--dark:#0b0907;--mono:'Special Elite','Courier New',monospace;--cond:'Barlow Condensed','Arial Narrow',sans-serif;color-scheme:dark;
---noise:url(/textures/paper-grain.png)}
+--noise:url(/textures/paper-grain.webp)}
 
 *{box-sizing:border-box;margin:0}
 
@@ -11,9 +11,9 @@ html,body{height:100%;background:var(--dark);color:var(--cr);font-family:var(--m
 button{font:inherit;cursor:pointer}
 
 :root{--mag:url(/cursors/magnifier.png) 23 22,auto;
---cork:url(/textures/cork.jpg)}
+--cork:url(/textures/cork.webp)}
 
-:root{--bk2:url(/textures/brick-orange.jpg)}
+:root{--bk2:url(/textures/brick-orange.webp)}
 
 .dsk{position:absolute;inset:0;border-radius:50%;background:#120c08;border:6px solid #f1e8cf;box-shadow:10px 12px 0 #140a05;overflow:hidden}
 
