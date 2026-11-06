@@ -1,5 +1,6 @@
 import { $ } from './dom.js';
 import { game } from '../state.js';
+import { sample } from './perf.js';
 
 export const WORLD = { w: 2200, h: 1500 };
 const MAX_SCALE = 1.6;
@@ -11,6 +12,17 @@ export function createCamera(vp, world) {
   let vx = 0, vy = 0, lf = 0.2, lt = 0;  // momentum, ease factor, last move time
   let run = false, down = false, moved = false, sx, sy, ox, oy, pinching = false, pd = 0;
   const pts = new Map();
+  let lastTs = 0, rasterScale = 1, settleT = 0;
+
+  /** The board stays on its own GPU layer; after a zoom settles, re-raster it once so it is crisp. */
+  function settle() {
+    clearTimeout(settleT);
+    settleT = setTimeout(() => {
+      if (Math.abs(cs - rasterScale) < 0.08) return;
+      world.style.willChange = 'auto';
+      requestAnimationFrame(() => { world.style.willChange = 'transform'; rasterScale = cs; });
+    }, 200);
+  }
 
   const minScale = () => Math.min(innerWidth / WORLD.w, innerHeight / WORLD.h); // whole board visible
   function clamp() {
@@ -19,22 +31,23 @@ export function createCamera(vp, world) {
     Y = wh <= H ? (H - wh) / 2 : Math.min(0, Math.max(H - wh, Y));
   }
   function apply() {
-    // Promote the board to its own layer only while it is actually moving.
-    world.style.willChange = 'transform';
     if (!run) { run = true; requestAnimationFrame(tick); }
   }
-  function tick() {
+  function tick(ts) {
+    const dt = lastTs ? ts - lastTs : 0; lastTs = ts; sample(dt);
     const coasting = Math.abs(vx) > 0.15 || Math.abs(vy) > 0.15;
     if (!down && !game.cur && coasting) { X += vx; Y += vy; vx *= 0.92; vy *= 0.92; clamp(); }
     cx += (X - cx) * lf; cy += (Y - cy) * lf; cs += (s - cs) * lf;
     world.style.transform = `translate3d(${cx.toFixed(2)}px,${cy.toFixed(2)}px,0) scale(${cs.toFixed(4)})`;
     if (Math.abs(X - cx) > 0.15 || Math.abs(Y - cy) > 0.15 || Math.abs(s - cs) > 0.0004 || (!game.cur && coasting)) requestAnimationFrame(tick);
-    else { run = false; world.style.willChange = 'auto'; }
+    else { run = false; lastTs = 0; settle(); }
   }
   function center() {
     s = Math.max(minScale(), 1);
     X = innerWidth / 2 - 1100 * s; Y = innerHeight / 2 - 780 * s; clamp();
-    cx = X; cy = Y; cs = s; apply();
+    cx = X; cy = Y; cs = s; rasterScale = s;
+    world.style.willChange = 'transform';
+    apply();
   }
   /** Zoom to scale `ns`, keeping the world point under (px, py) fixed. */
   function zoomAt(ns, px, py) {
