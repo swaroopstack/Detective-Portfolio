@@ -274,7 +274,7 @@ h1 em{display:block;color:var(--red);font-style:normal;text-shadow:0 0 30px #b32
 @media(max-width:900px){.emb{left:calc(50vw - 36vh);top:auto;bottom:-2vh;width:72vh;height:72vh}
 }
 
-.emb{width:calc(88vh*.829);height:88vh;left:calc(57vw - 44vh*.829);top:auto;bottom:-1vh;transform-origin:50% 100%;animation:br 10s ease-in-out infinite alternate}
+.emb{width:calc(88vh*.829);height:88vh;left:calc(57vw - 44vh*.829);top:auto;bottom:-4vh;transform-origin:50% 100%;animation:br 10s ease-in-out infinite alternate}
 
 .fig{width:100%;height:100%;display:block}
 
