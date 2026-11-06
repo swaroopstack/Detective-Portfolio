@@ -9,6 +9,7 @@ import { say, hideDialogue, isShowing, advance } from './components/Dialogue.js'
 import { showPanel, hidePanel } from './components/SidePanel.js';
 import { hidePreview } from './components/LinkPreview.js';
 import { resumeDust } from './components/DustCanvas.js';
+import { setLow } from './lib/perf.js';
 
 let camera;
 
@@ -28,6 +29,9 @@ export function initGame(cam) {
 export function startGame() {
   try { ambient(); } catch { /* audio unavailable: the game still works silently */ }
   sfx('c');
+  // The entry poster keeps the full effects; the board starts in reduced mode.
+  // The FX button still lets the visitor switch back on demand.
+  setLow(true);
   preloadPreviews();
   $('start').classList.add('out');
   setTimeout(() => {
